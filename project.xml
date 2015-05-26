@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<project type="activity" builder="java">
+    <name>Director Bridge</name>
+    <description>
+Interface for the director.
+    </description>
+
+    <identifyingName>com.endpoint.lg.director.bridge</identifyingName>
+    <version>1.0.0.dev</version>
+</project>
