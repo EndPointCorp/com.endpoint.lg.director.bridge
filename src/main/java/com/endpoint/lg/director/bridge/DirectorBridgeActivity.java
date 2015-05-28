@@ -88,7 +88,10 @@ public class DirectorBridgeActivity extends BaseRoutableRosActivity {
       if (w.activity.equals("streetview")) {
         app = "streetview";
         break;
-      } // else if (condition for pano viewer activity goes here)
+      } else if (w.activity.equals("pano")) {
+        app = "pano";
+        break;
+      }
     }
     
     if (app.equals("earth")) {
@@ -101,7 +104,12 @@ public class DirectorBridgeActivity extends BaseRoutableRosActivity {
       activateGroup(groupStreetview);
       deactivateGroup(groupEarth);
       deactivateGroup(groupPanoviewer);
-    } // else if (condition for pano viewer activity goes here)
+    } else if (app.equals("pano")) {
+      getLog().info("Pano Viewer scene");
+      activateGroup(groupPanoviewer);
+      deactivateGroup(groupStreetview);
+      deactivateGroup(groupEarth);
+    }
   }
 
   @Override

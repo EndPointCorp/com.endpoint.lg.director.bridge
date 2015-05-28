@@ -6,5 +6,5 @@ Interface for the director.
     </description>
 
     <identifyingName>com.endpoint.lg.director.bridge</identifyingName>
-    <version>1.0.0.dev</version>
+    <version>1.0.2</version>
 </project>
