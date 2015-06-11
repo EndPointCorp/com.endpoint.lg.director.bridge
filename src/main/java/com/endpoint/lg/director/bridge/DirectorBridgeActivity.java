@@ -19,7 +19,7 @@ package com.endpoint.lg.director.bridge;
 
 import interactivespaces.SimpleInteractiveSpacesException;
 import interactivespaces.activity.impl.ros.BaseRoutableRosActivity;
-import interactivespaces.util.data.json.JsonMapper;
+import interactivespaces.util.data.json.StandardJsonMapper;
 
 import java.io.IOException;
 import java.util.Map;
@@ -128,7 +128,7 @@ public class DirectorBridgeActivity extends BaseRoutableRosActivity {
   public void onNewInputJson(String channelName, Map<String, Object> message) {
     getLog().info("Got a message on " + channelName);
 
-    String json = JsonMapper.INSTANCE.toString(message);
+    String json = StandardJsonMapper.INSTANCE.toString(message);
     getLog().info(json);
 
     if (channelName.equals("scene")) {

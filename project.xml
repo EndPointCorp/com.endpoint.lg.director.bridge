@@ -6,5 +6,36 @@ Interface for the director.
     </description>
 
     <identifyingName>com.endpoint.lg.director.bridge</identifyingName>
-    <version>1.0.3</version>
+    <version>1.1.0</version>
+
+    <activity type="interactivespaces_native">
+        <name>comEndpointLgDirectorBridge</name>
+        <class>com.endpoint.lg.director.bridge.DirectorBridgeActivity</class>
+        <configuration>
+            <property name="space.activity.log.level">
+                <value>info</value>
+            </property>
+            <property name="space.activity.ros.node.name">
+                <value>liquidgalaxy/director/bridge/${space.activity.group}</value>
+            </property>
+            <property name="space.activity.routes.inputs">
+                <value>scene</value>
+            </property>
+            <property name="space.activity.route.input.scene">
+                <value>/director/scene</value>
+            </property>
+            <property name="lg.director.group.earth">
+                <value>Google Earth Client</value>
+            </property>
+            <property name="lg.director.group.streetview">
+                <value>Street View</value>
+            </property>
+            <property name="lg.director.group.panoviewer">
+                <value>Panoramic Image Viewers</value>
+            </property>
+            <property name="lg.master.api.uri">
+                <value>http://lg-head:8080/interactivespaces</value>
+            </property>
+        </configuration>
+    </activity>
 </project>

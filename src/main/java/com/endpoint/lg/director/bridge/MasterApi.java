@@ -18,8 +18,8 @@
 package com.endpoint.lg.director.bridge;
 
 import interactivespaces.SimpleInteractiveSpacesException;
-import interactivespaces.util.data.json.JsonMapper;
-import interactivespaces.util.data.json.JsonNavigator;
+import interactivespaces.util.data.json.StandardJsonMapper;
+import interactivespaces.util.data.json.StandardJsonNavigator;
 
 import java.io.IOException;
 
@@ -49,9 +49,9 @@ public class MasterApi {
   public static final int ERR_NO_RESPONSE = -1;
   public static final int ERR_NOT_FOUND = -2;
 
-  private JsonNavigator liveActivityGroupCache;
+  private StandardJsonNavigator liveActivityGroupCache;
   private HttpClient client;
-  private JsonMapper jsonMapper;
+  private StandardJsonMapper jsonMapper;
 
   private String masterUrl;
   private Log log;
@@ -60,15 +60,15 @@ public class MasterApi {
     masterUrl = url;
     this.log = log;
     client = new HttpClient();
-    jsonMapper = new JsonMapper();
+    jsonMapper = new StandardJsonMapper();
     liveActivityGroupCache = null;
   }
 
-  private JsonNavigator sendRequest(String path) {
+  private StandardJsonNavigator sendRequest(String path) {
     String url = masterUrl + "/" + path;
     log.info("Hitting url: " + url);
     GetMethod method = new GetMethod(url);
-    JsonNavigator responseJson = null;
+    StandardJsonNavigator responseJson = null;
 
     try {
       // Execute the method.
@@ -81,7 +81,7 @@ public class MasterApi {
       // Read the response body.
       String responseBody = new String(method.getResponseBody());
       log.info(responseBody);
-      responseJson = new JsonNavigator(jsonMapper.parseObject(responseBody));
+      responseJson = new StandardJsonNavigator(jsonMapper.parseObject(responseBody));
 
     } catch (HttpException e) {
       System.err.println("Fatal protocol violation: " + e.getMessage());
@@ -100,7 +100,7 @@ public class MasterApi {
   private void fetchLiveActivityGroups() {
     String url = ENTITY_LIVEACTIVITYGROUP + "/" + COMMAND_LIST + REQUEST_EXT;
     
-    JsonNavigator responseJson = sendRequest(url);
+    StandardJsonNavigator responseJson = sendRequest(url);
     if (responseJson.containsProperty(RESPONSE_FIELD_DATA)) {
       responseJson.down(RESPONSE_FIELD_DATA);
     } else {
@@ -147,7 +147,7 @@ public class MasterApi {
 
     String url = ENTITY_LIVEACTIVITYGROUP + "/" + id + "/" + command
         + REQUEST_EXT;
-    JsonNavigator response = sendRequest(url);
+    StandardJsonNavigator response = sendRequest(url);
     if (response == null) {
       throw new SimpleInteractiveSpacesException(
           "No response from master request for " + name);
